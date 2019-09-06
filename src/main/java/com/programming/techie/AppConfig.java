@@ -5,17 +5,19 @@ import org.springframework.context.annotation.Bean;
 public class AppConfig {
 
     @Bean(name = "basicSpellChecker")
-    public BasicSpellChecker createBasicSpellChecker(){
+    public BasicSpellChecker createBasicSpellChecker() {
         return new BasicSpellChecker();
     }
 
     @Bean(name = "advancedSpellChecker")
-    public AdvancedSpellChecker createAdvancedSpellChecker(){
+    public AdvancedSpellChecker createAdvancedSpellChecker() {
         return new AdvancedSpellChecker();
     }
 
     @Bean(name = "emailClient")
-    public EmailClient createEmailClient(){
-        return new EmailClient(createAdvancedSpellChecker());
+    public EmailClient createEmailClient() {
+        EmailClient emailClient = new EmailClient();
+        emailClient.setSpellChecker(createAdvancedSpellChecker());
+        return emailClient;
     }
 }
