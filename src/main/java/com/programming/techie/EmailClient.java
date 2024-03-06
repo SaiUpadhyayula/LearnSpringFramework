@@ -1,17 +1,14 @@
 package com.programming.techie;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component
 class EmailClient {
-    @Autowired
-    @Qualifier("advancedSpellChecker")
-    private SpellChecker spellChecker;
+    private BasicSpellChecker basicSpellChecker;
+
+    EmailClient(){
+        this.basicSpellChecker = new BasicSpellChecker();
+    }
 
     void sendEmail(String emailMessage) {
-        spellChecker.checkSpelling(emailMessage);
-        // Logic to Send Email
+        basicSpellChecker.checkSpelling(emailMessage);
+        // Logic to send email 
     }
 }
